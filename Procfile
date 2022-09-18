@@ -1,1 +1,1 @@
-web: python deploy.py
+web: uvicorn app:app
