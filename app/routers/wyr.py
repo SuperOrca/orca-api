@@ -2,6 +2,7 @@ import random
 
 import orjson
 from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import ORJSONResponse
 
 from ..limiter import limiter
 
@@ -11,13 +12,13 @@ with open("data/wyr.json", "r") as file:
 router = APIRouter(prefix="/wyr", tags=["wyr"])
 
 
-@router.get("/")
+@router.get("/", response_class=ORJSONResponse)
 @limiter.limit("3/second")
 async def get_one(request: Request) -> dict:
-    return {"question": random.choice(data)}
+    return ORJSONResponse({"question": random.choice(data)})
 
 
-@router.get("/{amount}")
+@router.get("/{amount}", response_class=ORJSONResponse)
 @limiter.limit("2/second")
 async def get_amount(request: Request, amount: int) -> dict:
     if amount < 1:  # min amount
@@ -26,4 +27,4 @@ async def get_amount(request: Request, amount: int) -> dict:
     if amount > 50:  # max amount
         raise HTTPException(status_code=400, detail="The amount is greater than 50.")
 
-    return {"amount": amount, "questions": random.sample(data, amount)}
+    return ORJSONResponse({"amount": amount, "questions": random.sample(data, amount)})
