@@ -13,7 +13,7 @@ router = APIRouter(prefix="/wyr", tags=["Would You Rather?"])
 
 
 @router.get(
-    "/", response_class=ORJSONResponse, description="Get one would you rather question."
+    "/", response_class=ORJSONResponse, summary="Get one would you rather question."
 )
 @limiter.limit("3/second")
 async def get_one(request: Request) -> ORJSONResponse:
@@ -23,7 +23,7 @@ async def get_one(request: Request) -> ORJSONResponse:
 @router.get(
     "/{amount}",
     response_class=ORJSONResponse,
-    description="Get multiple would you rather questions.",
+    summary="Get multiple would you rather questions.",
 )
 @limiter.limit("2/second")
 async def get_amount(request: Request, amount: int) -> ORJSONResponse:
