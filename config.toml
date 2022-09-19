@@ -1,2 +1,4 @@
 title = "Orca API"
+description = "A personal API."
 version = "0.0.1"
+docs_url = "/"

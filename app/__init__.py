@@ -15,8 +15,3 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(wyr.router)
-
-
-@app.get("/", response_class=RedirectResponse, status_code=302)
-async def index(request: Request) -> None:
-    return "https://github.com/SuperOrca/orca-api"
