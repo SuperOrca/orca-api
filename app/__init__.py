@@ -7,7 +7,7 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from .limiter import limiter
-from .routers import wyr
+from .routers import wyr, dj
 
 with open("config.toml", "r") as file:
     config = toml.load(file)
@@ -17,6 +17,7 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.include_router(wyr.router)
+app.include_router(dj.router)
 
 
 @app.get("/", include_in_schema=False)
