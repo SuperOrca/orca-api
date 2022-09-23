@@ -5,7 +5,7 @@ from fastapi.responses import PlainTextResponse
 
 from app.utils.api import API
 
-from .routers import dj, wyr
+from .routers import _8ball, dj, wyr
 
 app = API()
 
@@ -24,5 +24,6 @@ async def ping():
     return "Pong!"
 
 
+app.include_router(_8ball.router)
 app.include_router(wyr.router)
 app.include_router(dj.router)
