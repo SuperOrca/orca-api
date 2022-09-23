@@ -51,4 +51,4 @@ async def _8ball(request: Request, all: Optional[bool] = False) -> Dict:
     if all:
         return {"amount": len(_8ball_responses), "responses": _8ball_responses}
     else:
-        return {"amount": 1, "responses": random.choice(_8ball_responses)}
+        return {"amount": 1, "responses": [random.choice(_8ball_responses)]}
