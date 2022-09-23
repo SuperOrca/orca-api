@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import toml
-from app.utils.state import State
 from fastapi import FastAPI as Fast
 from fastapi.responses import ORJSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+
+from .state import State
 
 with open("config.toml", "r") as file:
     config = toml.load(file)

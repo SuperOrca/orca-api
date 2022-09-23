@@ -3,9 +3,9 @@ from __future__ import annotations
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.responses import PlainTextResponse
 
-from app.utils.api import API
+from .utils import API
 
-from .routers import _8ball, dj, wyr
+from .routers import fun
 
 app = API()
 
@@ -24,6 +24,4 @@ async def ping():
     return "Pong!"
 
 
-app.include_router(_8ball.router)
-app.include_router(wyr.router)
-app.include_router(dj.router)
+app.include_router(fun.router)
