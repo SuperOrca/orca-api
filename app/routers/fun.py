@@ -8,13 +8,13 @@ from app.utils import limiter
 from fastapi import APIRouter, HTTPException, Request
 
 with open("data/dj.json", "r") as file:
-    dj = orjson.loads(file.read())
+    dj = set(orjson.loads(file.read()))
 
 with open("data/wyr.json", "r") as file:
-    wyr = orjson.loads(file.read())
+    wyr = set(orjson.loads(file.read()))
 
 with open("data/8ball.json", "r") as file:
-    _8ball_responses = orjson.loads(file.read())
+    _8ball_responses = set(orjson.loads(file.read()))
 
 router = APIRouter(tags=["Fun"])
 
