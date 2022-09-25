@@ -1,4 +1,4 @@
 title = "Orca API"
 description = "A personal API."
-version = "0.0.3"
+version = "0.0.4"
 openapi_url = "/swagger.json"
